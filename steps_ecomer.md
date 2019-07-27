@@ -1,99 +1,125 @@
-### repo
+# repo
 https://github.com/monpeco/spree-revision.git
 
-### Update apt-get pakages 
+# Update apt-get pakages 
 $ sudo apt-get update
 
-## Install rvm - https://github.com/rvm/ubuntu_rvm
-### install software-properties-common
+# Install ruby from rvm - https://github.com/rvm/ubuntu_rvm
+### 1. install software-properties-common
 $ sudo apt-get install software-properties-common
 
-### Add the PPA and install the package
+### 2. Add the PPA and install the package
 $ sudo apt-add-repository -y ppa:rael-gc/rvm
 $ sudo apt-get update
 $ sudo apt-get install rvm
 
-### Install ruby
-$ rvm install 2.5
+### 3. Install ruby
+`$ rvm install 2.5`
 
-### Install Postgresql
-#### Enable postgresql apt repository
+# Install Postgresql
+#### 1. Enable postgresql apt repository
+```
 $ sudo apt-get install wget ca-certificates
 $ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 $ sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+```
 
-#### Install postgres
+#### 2. Install postgres
+```
 $ sudo apt-get update
 $ sudo apt-get install postgresql postgresql-contrib
-
-### check that rubygem is install
+```
+# check that rubygem is install
+```
 $ which gem
 $ gem update --system
+```
+# install bundler
+`$ gem install bundler`
 
-### install bundler
-$ gem install bundler
+# install imageMagick
+`$ sudo apt install imageMagick`
 
-### install imageMagick
-$ sudo apt install imageMagick
-
-### install node
+# Install rails from node
+### 1. Install node
+```
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
+```
 
-### Install rails
-$ gem install rails -v 5.2.1
+### 2. Install rails
+`$ gem install rails -v 5.2.1`
 
-### Install docker
-$ sudo apt-get install docker.io
+# Install docker
+`$ sudo apt-get install docker.io`
 
-### Install pg gem
-$ gem install pg
+# Postgres
+### 1. Install pg gem
+`$ gem install pg`
 
-### Change to postgres
+### 2. Change to postgres
+```
 $ sudo -i -u postgres
 $ psql 
 # exit
 $ exit
 $ sudo -u postgres pqsl
+```
 
-### create a user (role in postgres)
-# create role myapp with createdb login password 'password1';
+### 3. create a user (role in postgres)
+`# create role myapp with createdb login password 'password1';`
 
-### create rails app with postgres
-$ rails new myapp --databse=postgresql
+### 4. create rails app with postgres
+`$ rails new myapp --databse=postgresql`
 
-gem install pg -v '1.1.4' --source 'https://rubygems.org/'
-bundle install
+### 5. Install specific version of pg
+`$ gem install pg -v '1.1.4' --source 'https://rubygems.org/'
+bundle install`
 
-sudo chsh -s /bin/bash monpeco
-
+### 6.1 Error peer authentication
 https://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge
-sudo service postgresql restart
 
-sudo mount -t vboxsf VirtualBox
 
-### Change the authentication from peer to md5
+### 6.2 Change the authentication from peer to md5
 https://stackoverflow.com/questions/15306770/pg-peer-authentication-failed
 
-### To take the changes in the authentication
-/etc/init.d/postgresql reload
+### 7. to take changes in postgres
+`sudo service postgresql restart`
 
-### To create the db
+### 8. To take the changes in the authentication
+`/etc/init.d/postgresql reload`
+
+### 9. To create the db
+```
 rake db:create
 rake db:migrate
+```
 
-### install generetors
+# Install Spree generetors
+```
 rails g spree:install --user_class=Spree::User
 rails g spree:auth:install
 rails g spree_gateway:install
+```
 
-### User in spree
+### 1. User in spree
+```
 Email [spree@example.com]: 
 Password [spree123]: 
+```
 
-### Check versions
-ruby --version
+# Check versions
+`ruby --version`
 ruby 2.5.5p157 (2019-03-15 revision 67260) [i686-linux]
-rails --version
+
+`rails --version`
 Rails 5.2.3
 
+# Change shell to bash
+`sudo chsh -s /bin/bash monpeco`
+
+# Mount shared folder
+`sudo mount -t vboxsf VirtualBox`
+
+# Install vscode
+`sudo dpkg -i code_1.35.1-1560349847_i386.deb` 
